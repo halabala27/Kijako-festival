@@ -1,13 +1,196 @@
 <!DOCTYPE html>
 <html lang="da">
+
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" type="x-icon" href="img/logo-red.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Kijako Feast Fastival</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
-    <section></section>
-    
+    <header class="header">
+        <div class="header-top">
+            <a href="index.html"><img src="img/logo-red.png" alt="KIJAKO Feast logo" class="logo"></a>
+            <nav class="nav">
+                <a href="#madboderne">Madboderne</a>
+                <a href="aktiviteter.html">Aktiviteter</a>
+                <a href="infomation.html">Information</a>
+                <a href="#presse">Presse</a>
+                <a href="img/ticketmaster-kijako.jpg" class="btn" target="_blank">Køb billet</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <video src="vid/landingpage-video.mov" class="hero-img" autoplay loop muted playsinline></video>
+        <div class="hero-text">
+            <h1>KIJAKO</h1>
+            <p>Tre dage. Tre lande. Én festival. </p>
+            <div class="hero-subtext">Street food, kreative mad‑workshops og kultur <br>fra Kina, Japan og Sydkorea – midt i
+                Græsted. </div>
+            <span>24, 25 & 26 juli 2026</span>
+
+            <a href="#hvad-er-kijako" class="btn">Læs om os</a>
+        </div>
+
+        <a class="scroll-indicator-link" href="#festival-oversigt" aria-label="Scroll ned">
+            <div class="scroll-indicator-box">
+                <svg viewBox="0 0 24 24" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M12 13.2L7.05 8.25L5.64 9.66L12 16.01L18.36 9.66L16.95 8.25L12 13.2Z"
+                        fill="var(--color-text-1)" />
+                </svg>
+            </div>
+            <span class="scroll-indicator-text">Scroll</span>
+        </a>
+    </section>
+
+    <!-- Skema over festivalen -->
+    <section class="festival-schedule" id="festival-oversigt">
+        <div class="festival-schedule-header">
+            <h2>Festival oversigt</h2>
+        </div>
+        <div class="schedule-cards">
+            <div class="schedule-card">
+                <img src="img/pige-1.jpg" alt="Fredag" class="schedule-img">
+                <button class="btn" onclick="openSchedule('friday')">Fredag</button>
+            </div>
+            <div class="schedule-card">
+                <img src="img/picnic-krea.jpg" alt="Lørdag" class="schedule-img">
+                <button class="btn" onclick="openSchedule('saturday')">Lørdag</button>
+            </div>
+            <div class="schedule-card">
+                <img src="img/søndag-skema.jpg" alt="Søndag" class="schedule-img">
+                <button class="btn" onclick="openSchedule('sunday')">Søndag</button>
+            </div>
+            <!-- Popup overlay for schedule -->
+            <div id="schedule-overlay" class="schedule-overlay" onclick="closeSchedule()"></div>
+            <div id="schedule-popup" class="schedule-popup">
+                <button class="close-btn" onclick="closeSchedule()" aria-label="Luk">&times;</button>
+                <div id="schedule-content"></div>
+            </div>
+            <script src="schedule-popup.js"></script>
+            <script src="darkmode-toggle.js"></script>
+        </div>
+    </section>
+
+    <!-- Intro sektion -->
+    <section class="intro" id="hvad-er-kijako">
+        <div class="intro-inner">
+            <div class="intro-text">
+                <h2>Hvad er KIJAKO Festival?</h2>
+                <p>
+                    KIJAKO samler det bedste fra Østasien – smage, dufte og kultur fra Kina, Japan og Sydkorea.
+                    Oplev street food, live musik, workshops og lyssmykkede aftener i hjertet af København.
+                    Tre dage fyldt med farver, fællesskab og fantastiske oplevelser.
+                </p>
+                <a href="img/ticketmaster-kijako.jpg" class="btn" target="_blank">Bestil billet</a>
+            </div>
+
+            <div class="intro-media">
+                <img src="img/om-os.jpg" alt="Publikum foran scene ved solnedgang" class="intro-img">
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Krea-zoner sektion -->
+    <section class="krea">
+        <div class="krea-inner">
+            <div class="krea-header-row">
+                <div class="krea-header-text">
+                    <h2>Oplev vores Krea-zoner</h2>
+                    <p>Deltag i sjove aktiviteter og lær nye færdigheder – følg med trin for trin.</p>
+                </div>
+            </div>
+            <div class="krea-grid">
+                <!-- Kort 1 -->
+                <div class="krea-card">
+                    <img src="img/pak-bentobox.jpg" alt="Lær at pak en bentobox">
+                    <h3>Lær at pak en bentobox</h3>
+                </div>
+                <!-- Kort 2 -->
+                <div class="krea-card">
+                    <img src="img/dumpling-krea.jpg" alt="Lær at lave dumplings">
+                    <h3>Lær at lave dumplings</h3>
+                </div>
+                <!-- Kort 3 -->
+                <div class="krea-card">
+                    <img src="img/pynt-bento.png" alt="Pynt din bentobox">
+                    <h3>Pynt din bentobox</h3>
+                </div>
+                <!-- Kort 4 -->
+                <div class="krea-card">
+                    <img src="img/picnic-krea.jpg" alt="Pak en picnickurv">
+                    <h3>Pak en picnickurv</h3>
+                </div>
+            </div>
+            <div class="krea-footer">
+                <a href="aktiviteter.html" class="btn">Se flere aktiviteter</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+
+            <!-- Nyhedsbrev -->
+            <div class="footer-col newsletter">
+                <h3>Få nyheder på mail</h3>
+                <p>Så du ikke misser en offentliggørelse og nyheder</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="E-mail" required>
+                    <button type="submit" class="btn">Tilmeld nyhedsbrevet</button>
+                </form>
+            </div>
+
+            <!-- Kontaktinfo -->
+            <div class="footer-col contact">
+                <h3>KIJAKO</h3>
+                <ul>
+                    <li>Telefon: +45 22 12 34 56</li>
+                    <li>E-mail: kijako-fææst@info.dk</li>
+                    <li>Adresse: Holtvej 40, 3230 Græsted</li>
+                </ul>
+            </div>
+
+            <!-- Sociale medier -->
+            <div class="footer-col social">
+                <h3>Følg med på sociale medier</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <!-- Toggle switch for dark mode -->
+
+
+
+    <div class="toggle-switch">
+        <label class="switch-label">
+            <input type="checkbox" class="checkbox">
+            <span class="slider"></span>
+        </label>
+    </div>
+
 </body>
+<script src="schedule-popup.js"></script>
+<script src="darkmode-toggle.js"></script>
+
 </html>

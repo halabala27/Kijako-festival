@@ -1,0 +1,1521 @@
+@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+
+
+/* Roots */
+:root {
+    --exstra-color-text: #e7d6c7;
+
+    --color-primary: #B93137;
+    --bg-1: #D9BDAB;
+    --bg-2: #543C2B;
+    --color-text-1: #530D10;
+    --color-text-2: #FFE3EA;
+    --color-accent: #FFD47D;
+    --border-radius: 33px;
+    --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --font-size-sm: 0.8rem;
+    --font-size-md: 1rem;
+    --font-size-lg: 1.2rem;
+    --font-size-xlg: 2rem;
+    --font-family: 'Inria Serif', serif;
+}
+
+/* Reset some default styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body.dark-mode {
+    --bg-1: #543C2B;
+    --bg-2: #D9BDAB;
+    --color-text-1: #530D10;
+    --color-text-2: #FFE3EA;
+    --color-accent: #FFD47D;
+}
+
+body.dark-mode,
+body.dark-mode * {
+    color: var(--color-text-2) !important;
+}
+
+body.dark-mode .footer,
+body.dark-mode .footer *,
+body.dark-mode .footer a {
+    color: var(--color-text-1) !important;
+}
+
+body.dark-mode .btn {
+    color: var(--color-text-2) !important;
+}
+
+body.dark-mode .btn:hover {
+    color: var(--color-text-1) !important;
+}
+
+
+/* Global Styles */
+body {
+    margin: 0;
+    background-color: var(--bg-1);
+    color: var(--color-text-1);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Festival Schedule Section */
+.festival-schedule {
+    max-width: 1200px;
+    margin: 48px auto 0 auto;
+}
+
+.festival-schedule {
+    max-width: 1200px;
+    margin: 48px auto 0 auto;
+}
+
+.festival-schedule-header {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 32px;
+}
+
+.festival-schedule-header h2 {
+    color: var(--color-text-1);
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    margin: 0;
+}
+
+.schedule-cards {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.schedule-card {
+    background: var(--bg-1);
+    border-radius: 32px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.13);
+    overflow: hidden;
+    width: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    transition: box-shadow 0.2s;
+}
+
+.schedule-card:hover {
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
+}
+
+.schedule-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 32px 32px 0 0;
+    display: block;
+    position: relative;
+}
+
+.schedule-card .btn {
+    position: absolute;
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%);
+    min-width: 120px;
+    font-size: 1.1rem;
+    padding: 12px 0;
+    background: var(--color-primary);
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+}
+
+@media (max-width: 1100px) {
+    .schedule-cards {
+        gap: 24px;
+    }
+
+    .schedule-card {
+        width: 90vw;
+        max-width: 340px;
+    }
+}
+
+@media (max-width: 800px) {
+    .festival-schedule {
+        padding: 24px 8px 0 8px;
+    }
+
+    .schedule-cards {
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+    }
+
+    .schedule-card {
+        width: 100%;
+        max-width: 400px;
+    }
+}
+
+
+/* Festival schedule popup styles */
+.schedule-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(44, 32, 24, 0.45);
+    backdrop-filter: blur(6px);
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.schedule-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.schedule-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    background: var(--bg-1);
+    border-radius: 24px;
+    box-shadow: 0 8px 48px rgba(44, 32, 24, 0.18);
+    z-index: 10000;
+    min-width: 320px;
+    max-width: 95vw;
+    width: 480px;
+    max-height: 90vh;
+    overflow-y: auto;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s;
+    padding: 32px 24px 24px 24px;
+}
+
+.schedule-popup.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.schedule-popup h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 18px;
+    color: var(--color-text-1);
+}
+
+.schedule-popup table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 12px;
+}
+
+.schedule-popup th,
+.schedule-popup td {
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--color-text-2);
+    text-align: left;
+    font-size: 1rem;
+}
+
+.schedule-popup th {
+    background: var(--bg-2);
+    font-weight: 700;
+    color: var(--color-text-2);
+}
+
+.schedule-popup tr:last-child td {
+    border-bottom: none;
+}
+
+.close-btn {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--color-primary);
+    cursor: pointer;
+    z-index: 2;
+    line-height: 1;
+    padding: 0;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: var(--color-accent);
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* HEADER & NAVIGATION */
+.header {
+    /* Navigation og header skal altid bruge light mode farver */
+    --bg-1: #D9BDAB;
+    --bg-2: #543C2B;
+    --color-text-1: #530D10;
+    --color-text-2: #FFE3EA;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 48px;
+    background: rgba(0, 0, 0, 0.30);
+    box-shadow: 0 39px 31.3px -13px rgba(0, 0, 0, 0.20);
+    pointer-events: auto;
+}
+
+.logo {
+    height: 72px;
+    width: 72px;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.nav {
+    /* Navigation skal altid bruge light mode farver */
+    --color-text-2: #FFE3EA;
+    --color-primary: #B93137;
+    display: flex;
+    gap: 48px;
+}
+
+.nav a {
+    color: var(--color-text-2);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: var(--font-size-md);
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+}
+
+.nav a:hover {
+    color: var(--color-primary);
+}
+
+/* Knap-styling */
+.btn {
+    background: var(--color-primary);
+    color: var(--color-text-2);
+    border: none;
+    padding: 12px 30px;
+    border-radius: var(--border-radius);
+    font-size: 1.15rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 6px 24px rgba(44, 32, 24, 0.35);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn:hover {
+    background: var(--color-accent);
+    color: var(--color-primary);
+}
+
+/* HERO SECTION */
+.hero {
+    /* Hero-sektionen skal altid bruge light mode farver */
+    --bg-1: #D9BDAB;
+    --bg-2: #543C2B;
+    --color-text-1: #530D10;
+    --color-text-2: #FFE3EA;
+    position: relative;
+    width: auto;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(44, 32, 24, 0.6);
+    z-index: 1;
+}
+
+.hero-text {
+    position: absolute;
+    left: 55px;
+    bottom: 120px;
+    z-index: 2;
+    color: var(--color-text-2);
+    max-width: 600px;
+    text-align: left;
+}
+
+.hero-text h1 {
+    font-size: 5rem;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    color: var(--color-text-2);
+    letter-spacing: 0.04em;
+    font-family: var(--font-family);
+    font-weight: 800;
+}
+
+.hero-text p {
+    font-size: 1.7rem;
+    margin: 0 0 10px 0;
+    color: var(--color-text-2);
+}
+
+.hero-text span {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 18px;
+    color: var(--color-text-2);
+}
+
+.hero-text .hero-subtext {
+    color: var(--color-text-2);
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.13);
+}
+
+/* Scroll indicator */
+.scroll-indicator-link {
+    position: absolute;
+    left: 50%;
+    bottom: 32px;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.scroll-indicator-box {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+    animation: scroll-down 2.2s infinite cubic-bezier(.4, 0, .2, 1);
+}
+
+.scroll-indicator-box svg {
+    display: block;
+}
+
+.scroll-indicator-text {
+    color: var(--color-text-2);
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-top: 2px;
+}
+
+@keyframes scroll-down {
+
+    0%,
+    100% {
+        transform: translateY(0rem);
+        opacity: 1;
+    }
+
+    35% {
+        transform: translateY(1rem);
+        opacity: 0;
+    }
+
+    70% {
+        transform: translateY(-1rem);
+        opacity: 0;
+    }
+}
+
+/* Intro sektion */
+.intro {
+    padding: 60px 60px;
+    padding-bottom: 0;
+    max-width: 1200px;
+
+}
+
+.intro-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    /* lidt større tekstkolonne */
+    gap: 48px;
+    align-items: center;
+}
+
+.intro-text h2 {
+    font-size: 2rem;
+    color: var(--color-text-1);
+    margin: 0 0 16px 0;
+    letter-spacing: 0.01em;
+}
+
+.intro-text p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #3b2a20;
+    margin: 0 0 24px 0;
+    max-width: 56ch;
+}
+
+.intro .btn {
+    padding: 12px 28px;
+    /* lidt mindre end hero for balance */
+}
+
+/* Billede højre */
+.intro-media {
+    position: relative;
+}
+
+.intro-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--border-radius);
+    box-shadow: 0 18px 40px rgba(44, 32, 24, 0.25);
+    object-fit: cover;
+}
+
+/* Responsiv stacking */
+@media (max-width: 960px) {
+    .intro-inner {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .intro-text h2 {
+        font-size: 1.8rem;
+    }
+
+    .intro-text p {
+        font-size: 1rem;
+    }
+}
+
+
+
+
+/* Krea-zoner sektion */
+.krea {
+    padding: 50px 0;
+    background: var(--bg-1);
+    text-align: center;
+}
+
+.krea-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px;
+}
+
+.krea h2 {
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+    color: var(--color-text-1);
+}
+
+.krea p {
+    font-size: 1.1rem;
+    margin-bottom: 48px;
+    color: var(--color-text-1);
+}
+
+.krea-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.krea-card {
+    background: var(--color-primary);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+.krea-card:hover {
+    transform: translateY(-6px);
+}
+
+.krea-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+}
+
+.krea-card h3 {
+    font-size: 1.2rem;
+    margin: 16px;
+    color: var(--color-text-2);
+}
+
+.krea-footer {
+    margin-top: 48px;
+}
+
+/* Responsiv */
+@media (max-width: 1024px) {
+    .krea-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .krea-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+.footer {
+    background: var(--bg-2);
+    /* kan ændres */
+    color: #fff;
+    padding: 40px 24px;
+}
+
+.footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 48px;
+    padding: 0 60px;
+}
+
+footer.footer {
+    margin-top: auto;
+    width: 100%;
+}
+
+.footer h3 {
+    margin-bottom: 16px;
+    font-size: 1.3rem;
+}
+
+.newsletter-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 12px 16px;
+    border-radius: var(--border-radius);
+    border: none;
+    font-size: 1rem;
+}
+
+.newsletter-form .btn {
+    padding: 12px 20px;
+}
+
+.contact ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.contact li {
+    margin-bottom: 8px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 16px;
+    font-size: 1.6rem;
+}
+
+.social-icons a {
+    color: #fff;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: var(--color-accent);
+}
+
+/* Responsiv */
+@media (max-width: 900px) {
+    .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        text-align: center;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+}
+
+
+/* Toggle Button */
+
+/* From Uiverse.io by Madflows */
+.toggle-switch {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 70px;
+    height: 36px;
+    z-index: 100;
+    --light: #d8dbe0;
+    --dark: #28292c;
+    --link: rgb(27, 129, 112);
+    --link-hover: rgb(24, 94, 82);
+}
+
+.switch-label {
+    position: absolute;
+    width: 100%;
+    height: 36px;
+    background-color: var(--dark);
+    border-radius: 18px;
+    cursor: pointer;
+    border: 3px solid var(--dark);
+}
+
+.checkbox {
+    position: absolute;
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 18px;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.checkbox:checked~.slider {
+    background-color: var(--light);
+}
+
+.slider::before {
+    content: "\2600";
+    position: absolute;
+    top: 1px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: var(--light);
+    color: #f7b731;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    border: none;
+}
+
+.checkbox:checked~.slider::before {
+    -webkit-transform: translateX(36px);
+    -ms-transform: translateX(36px);
+    transform: translateX(36px);
+    background-color: var(--dark);
+    color: #fff;
+    content: "\1F319";
+    box-shadow: none;
+}
+
+
+h2 {
+    font-family: var(--font-family);
+    font-weight: 800;
+}
+
+
+
+/* Aktiviteter collage layout */
+.aktiviteter-hero {
+    max-width: 900px;
+    margin: 48px auto 0 auto;
+    text-align: center;
+}
+
+.aktiviteter-hero h1 {
+    font-size: 2.6rem;
+    color: var(--color-text-1);
+    margin-bottom: 8px;
+    padding-top: 64px;
+}
+
+.aktiviteter-hero p {
+    color: var(--color-text-1);
+    font-size: 1.2rem;
+}
+
+.aktiviteter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    max-width: 1300px;
+    margin: 40px auto 0 auto;
+    padding: 0 24px 48px 24px;
+}
+
+.aktiviteter-card {
+    background: var(--bg-1);
+    border-radius: 32px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.13);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 340px;
+}
+
+.aktiviteter-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+.aktiviteter-card-info {
+    padding: 24px 24px 18px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.aktiviteter-card-tid {
+    background: var(--color-primary);
+    color: #fff;
+    padding: 4px 16px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    align-self: flex-start;
+    margin-bottom: 6px;
+}
+
+@media (max-width: 700px) {
+    .aktiviteter-hero {
+        padding: 0 8px;
+    }
+
+    .aktiviteter-grid {
+        gap: 18px;
+        padding: 0 4px 32px 4px;
+    }
+
+    .aktiviteter-card-info {
+        padding: 16px 10px 12px 10px;
+    }
+}
+
+/* Load more section */
+.aktiviteter-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px 32px;
+    margin: 40px auto 0 auto;
+    max-width: 1200px;
+    justify-items: center;
+    align-items: stretch;
+    margin-bottom: 80px;
+    /* Ekstra plads under kortene, så knappen ikke går under footeren */
+}
+
+#knap-container {
+    margin-bottom: 80px;
+    /* Sikrer at knap-containeren ikke rammer footeren, især på 'Alle dage' */
+}
+
+.aktiviteter-card.skjult {
+    display: none;
+}
+
+.aktiviteter-card.large {
+    /* Deaktiveres, bruges ikke længere */
+    min-height: unset;
+}
+
+.aktiviteter-card {
+    background: var(--bg-2);
+    border-radius: 32px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.13);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 320px;
+    width: 100%;
+    max-width: 250px;
+    min-width: 0;
+    min-height: 260px;
+    cursor: pointer;
+}
+
+.aktiviteter-card.large {
+    grid-column: span 2;
+    min-height: 380px;
+
+    .aktiviteter-cards {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 650px;
+    }
+
+    .aktiviteter-card {
+        max-width: 320px;
+    }
+}
+
+.aktiviteter-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+
+    .aktiviteter-cards {
+        grid-template-columns: 1fr;
+        max-width: 95vw;
+    }
+
+    .aktiviteter-card {
+        max-width: 100%;
+    }
+}
+
+.aktiviteter-card-tid {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    background: var(--color-primary);
+    color: #fff;
+    padding: 4px 16px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    z-index: 2;
+}
+
+.aktiviteter-card-titel {
+    position: absolute;
+    left: 18px;
+    bottom: 24px;
+    background: var(--color-primary);
+    color: #fff;
+    padding: 6px 18px;
+    border-radius: 12px;
+    font-weight: 700;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+    color: var(--color-text-2);
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    margin: 0;
+}
+
+@media (max-width: 900px) {
+    .aktiviteter-cards {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        max-width: 95vw;
+        padding: 0 8px 32px 8px;
+    }
+
+    .aktiviteter-card {
+        max-width: 100%;
+    }
+}
+
+/* --- Aktiviteter filter styling --- */
+.aktiviteter-filter-container {
+    background: var(--bg-2);
+    border-radius: 33px;
+    box-shadow: 0 4px 24px rgba(44, 32, 24, 0.10);
+    padding: 12px 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    margin: 32px auto 0 auto;
+    gap: 0;
+}
+
+.aktiviteter-filter {
+    display: flex;
+    gap: 12px;
+}
+
+.filter-btn {
+    background: var(--bg-1);
+    color: var(--color-text-1);
+    border: none;
+    border-radius: 16px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 8px 22px;
+    transition: background 0.2s, color 0.2s;
+    outline: none;
+    box-shadow: 0 2px 8px rgba(44, 32, 24, 0.08);
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    background: var(--color-primary);
+    color: #fff;
+}
+
+.aktiviteter-list {
+    display: none;
+    flex-direction: column;
+    gap: 48px;
+    max-width: 1000px;
+    margin: 48px auto 0 auto;
+    padding: 0 16px 64px 16px;
+}
+
+.aktivitet-row {
+    display: none;
+}
+
+/* --- Kun vis dag-layout når .dag-visning er på .aktiviteter-list --- */
+.aktiviteter-list {
+    display: none;
+}
+
+.aktiviteter-list.dag-visning {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Skjul dag-layout når alle dage er valgt, vis i stedet .aktiviteter-cards (klassisk grid) */
+.aktiviteter-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    margin: 40px auto 0 auto;
+    max-width: 1400px;
+    /* padding: 0 24px 48px 24px; */
+    justify-content: center;
+}
+
+.aktiviteter-list:not(.dag-visning) {
+    display: none !important;
+}
+
+/* --- Aktiviteter side: skiftevis billede/info layout --- */
+.aktiviteter-list {
+    max-width: 1000px;
+    margin: 48px auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    padding: 0 16px 64px 16px;
+}
+
+.aktivitet-row {
+    display: none;
+    align-items: stretch;
+    gap: 0;
+    background: var(--bg-1);
+    border-radius: 36px;
+    box-shadow: 0 4px 24px rgba(44, 32, 24, 0.10);
+    overflow: hidden;
+    min-height: 320px;
+    position: relative;
+}
+
+.aktivitet-billede {
+    flex: 1 1 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-2);
+    min-width: 0;
+}
+
+.aktivitet-billede img {
+    width: 100%;
+    max-width: 340px;
+    max-height: 260px;
+    object-fit: cover;
+    border-radius: 24px;
+    box-shadow: 0 2px 12px rgba(44, 32, 24, 0.10);
+    margin: 32px;
+}
+
+.aktivitet-info {
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 32px 40px;
+    background: var(--bg-1);
+    color: var(--color-text-1);
+    min-width: 0;
+}
+
+.aktivitet-info h2 {
+    color: var(--color-primary);
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+.aktivitet-info p {
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+}
+
+.aktivitet-row .left {
+    order: 1;
+}
+
+.aktivitet-row .right {
+    order: 2;
+}
+
+/* Skift rækkefølge for hver anden aktivitet */
+.aktivitet-row:nth-child(even) .aktivitet-billede {
+    order: 2;
+}
+
+.aktivitet-row:nth-child(even) .aktivitet-info {
+    order: 1;
+}
+
+@media (max-width: 900px) {
+    .aktiviteter-list {
+        gap: 32px;
+    }
+
+    .aktivitet-row {
+        flex-direction: column;
+        min-height: unset;
+    }
+
+    .aktivitet-billede img {
+        margin: 20px auto 0 auto;
+        max-width: 95vw;
+        max-height: 220px;
+    }
+
+    .aktivitet-info {
+        padding: 24px 16px 32px 16px;
+    }
+}
+
+
+/* infomation page design */
+/* Accordion smooth slide effect */
+.info-faq .accordion details[open] .accordion-content {
+    animation: accordion-open 0.45s cubic-bezier(.4, 0, .2, 1);
+}
+
+.info-faq .accordion .accordion-content {
+    overflow: hidden;
+    transition: max-height 0.45s cubic-bezier(.4, 0, .2, 1), padding 0.3s;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.info-faq .accordion details[open] .accordion-content {
+    max-height: 400px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+}
+
+@keyframes accordion-open {
+    0% {
+        opacity: 0;
+        transform: translateY(-12px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Grønne tiltag sektion på info-side */
+.green-tiltag-flex {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 48px;
+    max-width: 900px;
+    margin: 56px auto 0 auto;
+    /* background: var(--bg-2); */
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 24px rgba(44, 32, 24, 0.10);
+    padding: 32px 32px 24px 32px;
+    margin-bottom: 5%;
+}
+
+.green-tiltag-video {
+    flex: 1 1 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.green-tiltag-video video {
+    width: 100%;
+    height: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    background: #eaf7e3;
+    display: block;
+}
+
+.green-tiltag-tekst {
+    flex: 1 1 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--color-text-2);
+    padding: 0 0 0 12px;
+}
+
+.green-tiltag-tekst h2 {
+    color: var(--color-text-1);
+    font-size: 2rem;
+    margin-bottom: 16px;
+    text-align: left;
+}
+
+.green-tiltag-tekst ul {
+    list-style: none;
+    padding: 0;
+    font-size: 1.15rem;
+    margin-bottom: 18px;
+}
+
+.green-tiltag-tekst li {
+    margin-bottom: 10px;
+}
+
+.green-tiltag-note {
+    color: var(--color-text-1);
+    font-weight: 600;
+    margin-top: 12px;
+}
+
+@media (max-width: 800px) {
+    .green-tiltag-flex {
+        flex-direction: column;
+        gap: 24px;
+        padding: 24px 8px 18px 8px;
+    }
+
+    .green-tiltag-tekst {
+        padding: 0;
+    }
+}
+
+/* --- INFO SIDE: Accordion/FAQ, grønne tiltag og map --- */
+.info-hero {
+    background: var(--bg-2);
+    color: var(--color-text-2);
+    padding: 64px 0 32px 0;
+    text-align: center;
+}
+
+.info-hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 60px 0 12px 0;
+    letter-spacing: 0.04em;
+    font-family: var(--font-family);
+}
+
+.info-hero p {
+    font-size: 1.3rem;
+    color: var(--color-accent);
+}
+
+.info-faq {
+    max-width: 600px;
+    margin: 48px auto 0 auto;
+    padding: 0 16px;
+}
+
+.accordion details {
+    background: var(--bg-2);
+    border-radius: 18px;
+    margin-bottom: 18px;
+    box-shadow: 0 2px 12px rgba(44, 32, 24, 0.08);
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+}
+
+.accordion details[open] {
+    box-shadow: 0 6px 24px rgba(44, 32, 24, 0.13);
+}
+
+.accordion summary {
+    font-size: 1.25rem;
+    font-weight: 700;
+    padding: 22px 32px;
+    cursor: pointer;
+    background: none;
+    outline: none;
+    color: var(--color-text-1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    transition: background 0.2s;
+}
+
+.accordion summary::-webkit-details-marker {
+    display: none;
+}
+
+.accordion summary:after {
+    content: '+';
+    font-size: 1.5rem;
+    color: var(--color-text-2);
+    margin-left: auto;
+    transition: transform 0.2s;
+}
+
+.accordion details[open] summary:after {
+    content: '-';
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    padding: 0 32px 22px 32px;
+    color: var(--color-text-1);
+    font-size: 1.1rem;
+    background: var(--bg-2);
+    border-top: 1px solid #e0cfc0;
+}
+
+.info-map {
+    max-width: 1200px;
+    margin: 56px auto 64px auto;
+    padding: 0 16px;
+    text-align: center;
+    width: 100%;
+}
+
+.info-faq h1,
+.info-map h1 {
+    color: var(--color-text-1);
+    font-size: var(--font-size-xlg);
+    margin-bottom: 18px;
+    font-family: var(--font-family);
+}
+
+.map-embed {
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(44, 32, 24, 0.10);
+}
+
+.info-hero h1,
+.info-hero p {
+    color: var(--color-text-2) !important;
+}
+
+body.dark-mode .info-hero h1,
+body.dark-mode .info-hero p {
+    color: var(--color-text-1) !important;
+}
+
+/* Hero-tekst: altid lys i light mode, mørk i dark mode */
+.info-hero h1,
+.info-hero p {
+    color: var(--color-text-2) !important;
+}
+
+body.dark-mode body.dark-mode .info-hero p {
+    color: var(--color-text-1) !important;
+}
+
+/* FAQ og Find vej til festivalen overskrifter: altid mørk tekst */
+.info-faq .accordion h1,
+.info-map h1 {
+    color: var(--color-text-1) !important;
+}
+
+body.dark-mode .info-faq .accordion h1,
+body.dark-mode .info-map h1 {
+    color: var(--color-text-2) !important;
+}
+
+/* Hero-overskrift: lys tekst i light mode, mørk i dark mode */
+.info-hero h1 {
+    color: var(--color-text-2) !important;
+}
+
+/* FAQ og map layout-justeringer for ens linje */
+.info-faq .accordion {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 48px;
+    width: 100%;
+}
+
+.info-map {
+    max-width: 1200px;
+    margin: 0 auto 64px auto;
+    padding: 0 16px;
+}
+
+.info-map h1 {
+    text-align: left;
+    margin-left: 0;
+    font-size: 2.2rem;
+    color: var(--color-primary);
+    font-family: var(--font-family);
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.info-map .map-embed p {
+    text-align: left;
+    margin-left: 0;
+    color: var(--color-text-1);
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.info-faq .accordion h1 {
+    text-align: left;
+    font-size: 2.2rem;
+    color: #fff;
+    font-family: var(--font-family);
+    font-weight: 800;
+    margin: 24px 0;
+    ;
+}
+
+/* Sikrer mørk tekst på alle svar i FAQ */
+.info-faq .accordion .accordion-content,
+.info-faq .accordion .accordion-content p,
+.info-faq .accordion .accordion-content li,
+.info-faq .accordion .accordion-content strong {
+    color: var(--color-text-2) !important;
+    font-weight: 500;
+}
+
+.accordion-content p {
+    color: var(--color-text-2) !important;
+}
+
+body.dark-mode .info-faq .accordion .accordion-content,
+body.dark-mode .info-faq .accordion .accordion-content p,
+body.dark-mode .info-faq .accordion .accordion-content li,
+body.dark-mode .info-faq .accordion .accordion-content strong {
+    color: var(--color-text-1) !important;
+}
+
+/* Sikrer mørk tekst i info-hero og FAQ også i dark mode */
+.info-hero h1,
+.info-hero p {
+    color: var(--color-text-2) !important;
+}
+
+.info-faq .accordion .accordion-content {
+    color: var(--color-text-1) !important;
+}
+
+body.dark-mode .info-faq .accordion .accordion-content {
+    color: var(--color-text-1) !important;
+}
+
+/* Sikrer mørk tekst i dropdowns/FAQ også i dark mode */
+.info-faq .accordion summary,
+.info-faq .accordion .accordion-content {
+    color: var(--color-text-2) !important;
+}
+
+body.dark-mode .info-faq .accordion summary,
+body.dark-mode .info-faq .accordion .accordion-content {
+    color: var(--color-text-1) !important;
+}

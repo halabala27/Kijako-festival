@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="x-icon" href="img/logo-red.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aktiviteter - Kijako Feast Fastival</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <!-- header -->
+    <header class="header">
+        <div class="header-top">
+            <a href="index.html"><img src="img/logo-red.png" alt="KIJAKO Feast logo" class="logo"></a>
+            <nav class="nav">
+                <a href="#madboderne">Madboderne</a>
+                <a href="aktiviteter.html">Aktiviteter</a>
+                <a href="infomation.html">Information</a>
+                <a href="#presse">Presse</a>
+                <a href="img/ticketmaster-kijako.jpg" class="btn" target="_blank">Køb billet</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="aktiviteter-hero">
+        <h1>Festivalens aktiviteter</h1>
+        <p>Oplev workshops, kreative zoner og events for alle aldre.</p>
+        <div class="aktiviteter-filter-container">
+            <div class="aktiviteter-filter">
+                <button class="filter-btn active" data-dag="alle">Alle dage</button>
+                <button class="filter-btn" data-dag="fredag">Fredag</button>
+                <button class="filter-btn" data-dag="lørdag">Lørdag</button>
+                <button class="filter-btn" data-dag="søndag">Søndag</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="aktiviteter-cards aktiv">
+        <div class="aktiviteter-card" data-dag="fredag">
+            <img src="img/dumpling-krea.jpg" alt="Lær at lave dumplings">
+            <span class="aktiviteter-card-tid">Fredag 16:00-18:00</span>
+            <span class="aktiviteter-card-titel">Lær at lave dumplings</span>
+        </div>
+        <div class="aktiviteter-card" data-dag="fredag">
+            <img src="img/pak-bentobox.jpg" alt="Lær at pak en bentobox">
+            <span class="aktiviteter-card-tid">Fredag 16:00-18:00</span>
+            <span class="aktiviteter-card-titel">Lær at pak en bentobox</span>
+        </div>
+        <div class="aktiviteter-card" data-dag="lørdag">
+            <img src="img/pynt-bento.png" alt="Pynt din bentobox">
+            <span class="aktiviteter-card-tid">Lørdag 14:00-18:00</span>
+            <span class="aktiviteter-card-titel">Pynt din bentobox</span>
+        </div>
+        <div class="aktiviteter-card skjult" data-dag="lørdag">
+            <img src="img/picnic-krea.jpg" alt="Pak en picnickurv">
+            <span class="aktiviteter-card-tid">Lørdag 14:00-18:00</span>
+            <span class="aktiviteter-card-titel">Pak en picnickurv</span>
+        </div>
+        <div class="aktiviteter-card skjult" data-dag="søndag">
+            <img src="img/prepering-ramen-with-cook.jpg" alt="Lav ramen med kok">
+            <span class="aktiviteter-card-tid">Søndag 12:00-14:00</span>
+            <span class="aktiviteter-card-titel">Lav ramen med kok</span>
+        </div>
+        <div class="aktiviteter-card skjult" data-dag="søndag">
+            <img src="img/laver-bento.jpg" alt="Japansk papirfoldning">
+            <span class="aktiviteter-card-tid">Søndag 12:00-14:00</span>
+            <span class="aktiviteter-card-titel">Japansk papirfoldning</span>
+        </div>
+        <div class="aktiviteter-card skjult" data-dag="lørdag">
+            <img src="img/dumpling-stand.jpg" alt="Koreansk kimchi workshop">
+            <span class="aktiviteter-card-tid">Lørdag 14:00-18:00</span>
+            <span class="aktiviteter-card-titel">Koreansk kimchi workshop</span>
+        </div>
+
+        <!-- Knap-container placeres her, under alle kort -->
+        <div id="knap-container" style="display: flex; justify-content: center; gap: 16px; width: 100%;">
+            <button id="vis-mere-btn" class="btn">Vis mere</button>
+            <button id="skjul-btn" class="btn" style="display:none;">Skjul indhold</button>
+        </div>
+    </section>
+    <section class="aktiviteter-list">
+        <div class="aktivitet-row" data-dag="fredag">
+            <div class="aktivitet-billede left">
+                <img src="img/dumpling-krea.jpg" alt="Lær at lave dumplings">
+            </div>
+            <div class="aktivitet-info right">
+                <h2>Lær at lave dumplings</h2>
+                <p><strong>Land:</strong> Kina</p>
+                <p><strong>Tid:</strong> Fredag 16:00-18:00</p>
+                <p>Kom og fold dine egne dumplings med hjælp fra vores kokke. Lær om kinesiske traditioner og smag på
+                    dine egne kreationer.</p>
+            </div>
+        </div>
+        <div class="aktivitet-row" data-dag="fredag">
+            <div class="aktivitet-info left">
+                <h2>Lær at pak en bentobox</h2>
+                <p><strong>Land:</strong> Japan</p>
+                <p><strong>Tid:</strong> Fredag 16:00-18:00</p>
+                <p>Workshop hvor du lærer at pakke en autentisk japansk bentobox. Oplev japansk madkultur og få din egen
+                    bento med hjem.</p>
+            </div>
+            <div class="aktivitet-billede right">
+                <img src="img/pak-bentobox.jpg" alt="Lær at pak en bentobox">
+            </div>
+        </div>
+        <div class="aktivitet-row" data-dag="lørdag">
+            <div class="aktivitet-billede left">
+                <img src="img/pynt-bento.png" alt="Pynt din bentobox">
+            </div>
+            <div class="aktivitet-info right">
+                <h2>Pynt din bentobox</h2>
+                <p><strong>Land:</strong> Japan</p>
+                <p><strong>Tid:</strong> Lørdag 14:00-18:00</p>
+                <p>Kreativ workshop hvor du kan dekorere din egen bentobox med farver og figurer. Lær om japansk æstetik
+                    og madkunst.</p>
+            </div>
+        </div>
+        <div class="aktivitet-row" data-dag="lørdag">
+            <div class="aktivitet-info left">
+                <h2>Pak en picnickurv</h2>
+                <p><strong>Land:</strong> Japan</p>
+                <p><strong>Tid:</strong> Lørdag 14:00-18:00</p>
+                <p>Lær at sammensætte den perfekte japanske picnickurv ("hanami"). Oplev traditionen med picnic under
+                    kirsebærtræerne.</p>
+            </div>
+            <div class="aktivitet-billede right">
+                <img src="img/picnic-krea.jpg" alt="Pak en picnickurv">
+            </div>
+        </div>
+        <div class="aktivitet-row" data-dag="søndag">
+            <div class="aktivitet-billede left">
+                <img src="img/prepering-ramen-with-cook.jpg" alt="Lav ramen med kok">
+            </div>
+            <div class="aktivitet-info right">
+                <h2>Lav ramen med kok</h2>
+                <p><strong>Land:</strong> Japan</p>
+                <p><strong>Tid:</strong> Søndag 12:00-14:00</p>
+                <p>Få tips og tricks til at lave den perfekte ramen fra en professionel japansk kok. Smag på klassisk
+                    ramen og lær om suppens historie.</p>
+            </div>
+        </div>
+        <div class="aktivitet-row" data-dag="søndag">
+            <div class="aktivitet-info left">
+                <h2>Japansk papirfoldning</h2>
+                <p><strong>Land:</strong> Japan</p>
+                <p><strong>Tid:</strong> Søndag 12:00-14:00</p>
+                <p>Prøv kræfter med origami og lav smukke papirfigurer. Lær om japansk papirfoldning og tag dine egne
+                    figurer med hjem.</p>
+            </div>
+            <div class="aktivitet-billede right">
+                <img src="img/laver-bento.jpg" alt="Japansk papirfoldning">
+            </div>
+        </div>
+        <div class="aktivitet-row" data-dag="lørdag">
+            <div class="aktivitet-billede left">
+                <img src="img/dumpling-stand.jpg" alt="Koreansk kimchi workshop">
+            </div>
+            <div class="aktivitet-info right">
+                <h2>Koreansk kimchi workshop</h2>
+                <p><strong>Land:</strong> Sydkorea</p>
+                <p><strong>Tid:</strong> Lørdag 14:00-18:00</p>
+                <p>Lær at lave autentisk kimchi fra Sydkorea. Workshoppen dykker ned i fermentering, smag og koreanske
+                    madtraditioner.</p>
+            </div>
+            <div class="aktivitet-billede right">
+                <img src="img/dumpling-stand.jpg" alt="Koreansk kimchi workshop">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+
+            <!-- Nyhedsbrev -->
+            <div class="footer-col newsletter">
+                <h3>Få nyheder på mail</h3>
+                <p>Så du ikke misser en offentliggørelse og nyheder</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="E-mail" required>
+                    <button type="submit" class="btn">Tilmeld nyhedsbrevet</button>
+                </form>
+            </div>
+
+            <!-- Kontaktinfo -->
+            <div class="footer-col contact">
+                <h3>KIJAKO</h3>
+                <ul>
+                    <li>Telefon: +45 22 12 34 56</li>
+                    <li>E-mail: kijako-fææst@info.dk</li>
+                    <li>Adresse: Holtvej 40, 3230 Græsted</li>
+                </ul>
+            </div>
+
+            <!-- Sociale medier -->
+            <div class="footer-col social">
+                <h3>Følg med på sociale medier</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- Toggle switch for dark mode -->
+    <div class="toggle-switch">
+        <label class="switch-label">
+            <input type="checkbox" class="checkbox">
+            <span class="slider"></span>
+        </label>
+    </div>
+    <script src="darkmode-toggle.js"></script>
+    <script>
+        // Vis mere/Skjul indhold-funktionalitet
+        const visMereBtn = document.getElementById('vis-mere-btn');
+        const skjulBtn = document.getElementById('skjul-btn');
+        const knapContainer = document.getElementById('knap-container');
+        const cardsParent = document.querySelector('.aktiviteter-cards').parentNode;
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const cardsSection = document.querySelector('.aktiviteter-cards');
+        const listSection = document.querySelector('.aktiviteter-list');
+        const cardEls = document.querySelectorAll('.aktiviteter-card');
+        const rowEls = document.querySelectorAll('.aktivitet-row');
+
+        function setVisMereKnapper(skalVises) {
+            if (knapContainer) {
+                if (skalVises) {
+                    if (!cardsParent.contains(knapContainer)) {
+                        cardsParent.appendChild(knapContainer);
+                    }
+                    knapContainer.style.display = 'flex';
+                } else {
+                    if (cardsParent.contains(knapContainer)) {
+                        knapContainer.style.display = 'none';
+                        document.body.appendChild(knapContainer);
+                    }
+                }
+            }
+            if (visMereBtn && skjulBtn) {
+                if (skalVises) {
+                    const skjulte = document.querySelectorAll('.aktiviteter-card.skjult');
+                    visMereBtn.style.display = skjulte.length > 0 ? 'inline-block' : 'none';
+                    skjulBtn.style.display = skjulte.length > 0 ? 'none' : 'inline-block';
+                } else {
+                    visMereBtn.style.display = 'none';
+                    skjulBtn.style.display = 'none';
+                }
+            }
+        }
+        if (visMereBtn && skjulBtn) {
+            visMereBtn.addEventListener('click', function () {
+                document.querySelectorAll('.aktiviteter-card.skjult').forEach(card => {
+                    card.classList.remove('skjult');
+                });
+                visMereBtn.style.display = 'none';
+                skjulBtn.style.display = 'inline-block';
+            });
+            skjulBtn.addEventListener('click', function () {
+                const alleKort = document.querySelectorAll('.aktiviteter-card');
+                alleKort.forEach((card, i) => {
+                    if (i > 2) {
+                        card.classList.add('skjult');
+                    }
+                });
+                visMereBtn.style.display = 'inline-block';
+                skjulBtn.style.display = 'none';
+                cardsSection.scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+
+        // NY: Brug classList til toggling af dag-visning
+        function visAlle() {
+            cardsSection.style.display = '';
+            listSection.classList.remove('dag-visning');
+            rowEls.forEach(row => {
+                row.style.display = 'none';
+            });
+            setVisMereKnapper(true);
+        }
+        function visDag(dag) {
+            cardsSection.style.display = 'none';
+            listSection.classList.add('dag-visning');
+            let visibleIndex = 0;
+            rowEls.forEach(row => {
+                if (row.getAttribute('data-dag') === dag) {
+                    row.style.display = 'flex';
+                    const billede = row.querySelector('.aktivitet-billede');
+                    const info = row.querySelector('.aktivitet-info');
+                    if (visibleIndex % 2 === 0) {
+                        billede.classList.add('left');
+                        billede.classList.remove('right');
+                        info.classList.add('right');
+                        info.classList.remove('left');
+                    } else {
+                        billede.classList.add('right');
+                        billede.classList.remove('left');
+                        info.classList.add('left');
+                        info.classList.remove('right');
+                    }
+                    visibleIndex++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            setVisMereKnapper(false);
+        }
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function () {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const dag = this.getAttribute('data-dag');
+                if (dag === 'alle') {
+                    window.location.reload(); // Reload siden for at sikre fuld reset
+                } else {
+                    visDag(dag);
+                }
+            });
+        });
+        cardEls.forEach(card => {
+            card.addEventListener('click', function () {
+                const dag = card.getAttribute('data-dag');
+                filterBtns.forEach(b => {
+                    if (b.getAttribute('data-dag') === dag) {
+                        b.classList.add('active');
+                    } else {
+                        b.classList.remove('active');
+                    }
+                });
+                visDag(dag);
+            });
+        });
+        // Start med alle synlige
+        visAlle();
+    </script>
+</body>
+
+</html>
